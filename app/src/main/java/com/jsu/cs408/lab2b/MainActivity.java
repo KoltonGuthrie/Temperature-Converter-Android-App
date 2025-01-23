@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.jsu.cs408.lab2b.databinding.ActivityMainBinding;
 
-import java.math.BigDecimal;
-
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
