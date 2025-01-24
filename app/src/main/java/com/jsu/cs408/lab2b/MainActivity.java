@@ -24,11 +24,15 @@ public class MainActivity extends AppCompatActivity {
 
         double fTemp = Double.parseDouble(binding.fahrenheitInput.getText().toString());
 
-        double cel = (fTemp - 32.0) * (5.0 / 9.0);
+        double cTemp = convertFToC(fTemp);
+
+        binding.celsiusInput.setText(String.valueOf(cTemp));
+    }
+
+    private double convertFToC(double fahr) {
+        double cel = (fahr - 32.0) * (5.0 / 9.0);
 
         // Round to 2 decimal
-        double round = Math.round(cel * 100.0) / 100.0;
-
-        binding.celsiusInput.setText(String.valueOf(round));
+        return Math.round(cel * 100.0) / 100.0;
     }
 }
