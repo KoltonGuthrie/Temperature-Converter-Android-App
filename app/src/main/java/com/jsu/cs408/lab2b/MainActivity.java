@@ -20,13 +20,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickConvertButton(View v) {
-        if(binding.fahrenheitInput.getText() == null || binding.celsiusInput.getText() == null) return; // Both are empty
+        if(binding.fahrenheitInput.getText().length() <= 0 && binding.celsiusInput.getText().length() <= 0) return; // Both are empty
 
-        double fTemp = Double.parseDouble(binding.fahrenheitInput.getText().toString());
+        if(binding.fahrenheitInput.getText().length() > 0) { // Convert Fahrenheit to Celsius
+            double fTemp = Double.parseDouble(binding.fahrenheitInput.getText().toString());
+            double temp = convertFToC(fTemp);
 
-        double cTemp = convertFToC(fTemp);
+            binding.celsiusInput.setText(String.valueOf(temp));
+        } else { // Convert Celsius to Fahrenheit
+            double cTemp = Double.parseDouble(binding.celsiusInput.getText().toString());
+            double temp = convertCToF(cTemp);
 
-        binding.celsiusInput.setText(String.valueOf(cTemp));
+            binding.fahrenheitInput.setText(String.valueOf(temp));
+        }
     }
 
     private double convertFToC(double fahr) {
@@ -34,5 +40,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Round to 2 decimal
         return Math.round(cel * 100.0) / 100.0;
+    }
+
+    private double convertCToF(double cel) {
+        double fahr = (cel * 1.8) + 32;
+
+        return Math.round(fahr * 100.0) / 100.0;
     }
 }
